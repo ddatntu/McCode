@@ -1,0 +1,29 @@
+#!/bin/sh
+
+PREFIX="$0"
+# Iterate down a (possible) chain of symlinks (macOS does not have readlink -f)
+while [ -L "$PREFIX" ];
+do
+   PREFIX=`readlink "$PREFIX"`
+done
+
+PREFIX=`dirname $PREFIX`
+PREFIX=`dirname $PREFIX`
+PREFIX=`dirname $PREFIX`
+export @FLAVOR_UPPER@=$PREFIX/@FLAVOR@/2.5
+export @FLAVOR_UPPER@_TOOLS=$PREFIX/@FLAVOR@/2.5/tools/Perl/
+export PATH=$PREFIX/@FLAVOR@/2.5/miniconda3/bin:$PREFIX/@FLAVOR@/2.5/bin:$PATH
+echo
+echo The new shell started here is now set up for running this version of @FLAVOR@:
+echo
+@FLAVOR@ -v
+echo
+echo To end using this version of mcstas, exit this shell.
+echo
+export PS1='@FLAVOR@-2.5 env \W \$ '
+if [ -x "\${SHELL}" ]; then
+  \${SHELL}
+else
+  /bin/sh
+fi
+

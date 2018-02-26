@@ -1,0 +1,21 @@
+#!/bin/bash
+# Wrapper to display console error messages on Unixes
+PREFIX=`dirname $0`
+PREFIX=`dirname $PREFIX`
+PREFIX=`dirname $PREFIX`
+PREFIX=`dirname $PREFIX`
+export @FLAVOR_UPPER@=$PREFIX/@FLAVOR@/2.5
+export @FLAVOR_UPPER@_TOOLS=$PREFIX/@FLAVOR@/2.5/tools/Perl/
+export PATH=$PREFIX/@FLAVOR@/2.5/bin:$PATH
+UNAME=`uname -s`
+
+
+ERRMSG=`echo $* | sed s/\ /\\ /g`
+ERRMSG="@FLAVOR@: $ERRMSG"
+if [[ ${UNAME} == Darwin* ]]; then
+    osascript -e "tell app \"System Events\" to display dialog \"${ERRMSG}\""
+else
+    notify-send "${ERRMSG}"
+fi
+
+
