@@ -105,8 +105,8 @@ macro(setupMCCODE FLAVOR)
     ## Set mkdist-provided version
     set(MCCODE_VERSION "2.5")
     set(MCCODE_NAME "McXtrace")
-    set(MCCODE_DATE "Dec. 04, 2017")
-    set(MCCODE_STRING "McXtrace 2.5 - Dec. 04, 2017")
+    set(MCCODE_DATE "Feb. 26, 2018")
+    set(MCCODE_STRING "McXtrace 2.5 - Feb. 26, 2018")
     set(MCCODE_TARNAME "mcxtrace")
   else()
     ## Set Git-specific version
